@@ -31,8 +31,6 @@ An iOS application for converting numbers between hex, decimal, octal, and binar
 
 I made this simply because I wanted to have something on the go that could do this. It's rare that I have a need to convert numbers when out and about, but when I do, this comes in handy.
 
-***
-
 ## Open-source
 
 ### [Ping Master](https://github.com/NexusHeights/Ping-Master)
@@ -42,8 +40,6 @@ A network pinging app for iOS. I developed this and released the source under th
 
 # Personal
 Things I made in my spare time, separate from Nexus Heights.
-
-***
 
 ## Open-source
 
