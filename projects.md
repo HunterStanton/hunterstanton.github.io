@@ -7,8 +7,6 @@ permalink: /projects/
 # [Nexus Heights](http://nexusheights.org) 
 The apps I have made and released under my own company, Nexus Heights.
 
-***
-
 ## Live on the App Store
 <img src="{{ site.baseurl }}/images/image_resizifier_logo.png" alt="Image Resizifier Logo" />
 
