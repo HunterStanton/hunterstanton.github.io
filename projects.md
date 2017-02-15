@@ -10,17 +10,19 @@ The apps I have made and released under my own company, Nexus Heights.
 ***
 
 ## Live on the App Store
-
+<img src="{{ site.baseurl }}/images/image_resizifier_logo.png" alt="Image Resizifier Logo" />
 ### [Image Resizifier](http://appstor.io/go/appstore/1180432045)
 A MacOS application that allows easy resizing of image assets for use in Apple's Xcode.
 
 I developed this because I had a specific need for it, and I didn't want/find any other applications out there that had the features and simplistic GUI that I wanted.
 
+<img src="{{ site.baseurl }}/images/rng_master_logo.jpg" alt="RNG Master Logo" />
 ### [RNG Master](http://appstor.io/go/appstore/1089485378) / [RNG Master TV](http://appstor.io/go/appstore/1098269613)
 A set of random number generator apps for iOS, Apple Watch, and Apple TV that supports rolling dice, generating random numbers, and flipping a coin.
 
 I developed this in a single afternoon because I just wanted something to work on one day. Was the first application Nexus Heights ever released onto the App Store, so it was a big learning experience.
 
+<img src="{{ site.baseurl }}/images/convert_master_logo.jpg" alt="Convert Master Logo" />
 ### [Convert Master](http://appstor.io/go/appstore/1137413166)
 An iOS application for converting numbers between hex, decimal, octal, and binary. Supports converting from one type, to any other type.
 
