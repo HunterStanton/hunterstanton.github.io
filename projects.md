@@ -41,6 +41,11 @@ Things I made in my spare time, separate from Nexus Heights.
 
 ## Open-source
 
+### [SOE SRAM Editor](http://github.com/HunterStanton/SOE-SRAM-Editor)
+An SRAM (save RAM) editor for the Super Nintendo Entertainment System game, Secret of Evermore. Somewhat of a remake of the existing SRAM editor for the game, but in C# and not based off the original C++ code.
+
+This was one of my favorite games growing up, so I wanted to make something for it. It allows you to edit tons of variables related to your game progress.
+
 ### [COD Save Manipulator](http://github.com/HunterStanton/COD-Save-Manipulator)
 A tool that is capable of manipulating savegame.svg files for the popular *Call of Duty* series. It automatically determines which game the savegame is from, which platform it is on, and which endian it is in. It can also determine if the save is an Xbox 360 STFS package or not.
 
