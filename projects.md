@@ -41,6 +41,11 @@ Things I made in my spare time, separate from Nexus Heights.
 
 ## Open-source
 
+### [JAM Unpacker](http://github.com/HunterStanton/JAM-Unpacker)
+An unpacker for the JAM format used by the GameCube/PS2/Wii game, The Grim Adventures of Billy and Mandy.
+
+Allows you to take a peek inside the archives used by the game.
+
 ### [SOE SRAM Editor](http://github.com/HunterStanton/SOE-SRAM-Editor)
 An SRAM (save RAM) editor for the Super Nintendo Entertainment System game, Secret of Evermore. Somewhat of a remake of the existing SRAM editor for the game, but in C# and not based off the original C++ code.
 
