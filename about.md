@@ -26,7 +26,7 @@ I also really love Apple products and have since the second-generation iPod Touc
 * Using CocoaPods to seamlessly integrate third-party libraries into an iOS application (see __*[Currency-Converter](https://github.com/HunterStanton/Currency-Converter)*__)
 
 ### Reverse Engineering
-* Using a hex-editor or tool such as IDA or Hopper to reverse a file format and then writing a program to modify or print details about the file format (see __*[ContainerReader](https://github.com/HunterStanton/ContainerReader)*__ or __*[COD-Save-Manipulator](https://github.com/HunterStanton/COD-Save-Manipulator)*__)
+* Using a hex-editor or tool such as IDA or Hopper to reverse a file format and then writing a program to modify or print details about the file format (see __*[ContainerReader](https://github.com/HunterStanton/ContainerReader)*__ or __*[COD-Save-Manipulator](https://github.com/HunterStanton/COD-Save-Manipulator)*__ or __*[SOE SRAM Editor](https://github.com/HunterStanton/SOE-SRAM-Editor)*__ or __*[JAM-Unpacker](https://github.com/HunterStanton/JAM-Unpacker)*__)
 * Using a tool such as Hopper or IDA on an application binary to determine information about a checksum used on a file, and then writing a program to recalculate that checksum (see __*[Ghosts-Checksum-Fixer](https://github.com/HunterStanton/Ghosts-Checksum-Fixer)*__)
 * How to use a debugger and breakpoints to step through an application on the assembly level and determine what is going on to find out how it works
 
