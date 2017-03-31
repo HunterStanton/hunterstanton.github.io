@@ -8,6 +8,12 @@ permalink: /projects/
 The apps I have made and released under my own company, Nexus Heights.
 
 ## Live on the App Store
+
+<img src="{{ site.baseurl }}/images/gratuity_master_logo.png" alt="Gratuity Master Logo" style="border-radius: 50px;"/>
+
+### [Gratuity Master](http://appstor.io/go/appstore/1220356025)
+An app that allows you to split a bill or calculate gratuity. Customizable up to 100 people in a single party.
+
 <img src="{{ site.baseurl }}/images/image_resizifier_logo.png" alt="Image Resizifier Logo" />
 
 ### [Image Resizifier](http://appstor.io/go/appstore/1180432045)
