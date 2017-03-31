@@ -37,6 +37,8 @@ I made this simply because I wanted to have something on the go that could do th
 
 ## Open-source
 
+<img src="{{ site.baseurl }}/images/ping_master_logo.png" alt="Ping Master Logo" style="border-radius: 50px;"/>
+
 ### [Ping Master](https://github.com/NexusHeights/Ping-Master)
 A network pinging app for iOS. I developed this and released the source under the Nexus Heights name, because I didn't really want to release it on the App Store. Apple had recently implemented an IPv6 support requirement, so adding IPv6 support would be quite a lot of work for something so minor.
 
