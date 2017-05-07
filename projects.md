@@ -54,6 +54,9 @@ An unpacker for the JAM format used by the GameCube/PS2/Wii game, The Grim Adven
 
 Allows you to take a peek inside the archives used by the game.
 
+### [GVAS Converter](https://github.com/HunterStanton/GVAS-Converter)
+A converter for GVAS files used by Unreal Engine 4. It will convert to and from a JSON file, allowing easy editing of configuration files for UE4 games such as Gears of War 4.
+
 ### [SOE SRAM Editor](http://github.com/HunterStanton/SOE-SRAM-Editor)
 An SRAM (save RAM) editor for the Super Nintendo Entertainment System game, Secret of Evermore. Somewhat of a remake of the existing SRAM editor for the game, but in C# and not based off the original C++ code.
 
