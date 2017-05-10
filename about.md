@@ -13,7 +13,6 @@ I also really love Apple products and have since the second-generation iPod Touc
 ### Current
 *Co-Founder / Lead iOS Developer (Swift, Objective-C)* - [Nexus Heights](http://nexusheights.org) - December 2015 to Present
 
-### Previous
 *Lead iOS Developer (Swift, Xamarin)* - [Drover Rideshare](http://droverrideshare.com) - May 2016 to Present
 
 ## Skills
