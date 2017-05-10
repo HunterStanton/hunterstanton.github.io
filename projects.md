@@ -9,6 +9,11 @@ The apps I have made and released under my own company, Nexus Heights.
 
 ## Live on the App Store
 
+<img src="{{ site.baseurl }}/images/exchange_rate_master_logo.png" alt="Exchange Rate Master Logo" style="border-radius: 50px;"/>
+
+### [Exchange Rate Master](http://appstor.io/go/appstore/1222626707)
+An app that allows you to convert between currencies. Uses the Fixer.io JSON API to obtain live data that is updated every day.
+
 <img src="{{ site.baseurl }}/images/gratuity_master_logo.png" alt="Gratuity Master Logo" style="border-radius: 50px;"/>
 
 ### [Gratuity Master](http://appstor.io/go/appstore/1220356025)
