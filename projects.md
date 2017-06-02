@@ -11,8 +11,8 @@ The apps I have made and released under my own company, Nexus Heights.
 
 <img src="{{ site.baseurl }}/images/exchange_rate_master_logo.png" alt="Exchange Rate Master Logo" style="border-radius: 50px;"/>
 
-### [Exchange Rate Master](http://appstor.io/go/appstore/1222626707)
-An app that allows you to convert between currencies. Uses the Fixer.io JSON API to obtain live data that is updated every day.
+### [Exchange Rate Master (iOS/WatchOS)](http://appstor.io/go/appstore/1222626707)
+An app that allows you to convert between currencies. Uses the Fixer.io JSON API to obtain live data that is updated every day. 
 
 <img src="{{ site.baseurl }}/images/gratuity_master_logo.png" alt="Gratuity Master Logo" style="border-radius: 50px;"/>
 
@@ -28,7 +28,7 @@ I developed this because I had a specific need for it, and I didn't want/find an
 
 <img src="{{ site.baseurl }}/images/rng_master_logo.jpg" alt="RNG Master Logo" style="border-radius: 50px;"/>
 
-### [RNG Master](http://appstor.io/go/appstore/1089485378) / [RNG Master TV](http://appstor.io/go/appstore/1098269613)
+### [RNG Master (iOS/WatchOS)](http://appstor.io/go/appstore/1089485378) / [RNG Master TV](http://appstor.io/go/appstore/1098269613)
 A set of random number generator apps for iOS, Apple Watch, and Apple TV that supports rolling dice, generating random numbers, and flipping a coin.
 
 I developed this in a single afternoon because I just wanted something to work on one day. Was the first application Nexus Heights ever released onto the App Store, so it was a big learning experience.
