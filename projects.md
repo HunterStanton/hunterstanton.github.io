@@ -54,13 +54,21 @@ Things I made in my spare time, separate from Nexus Heights.
 
 ## Open-source
 
+### [WeatherApp](https://github.com/HunterStanton/WeatherApp)
+An example weather app for iOS written in Swift that downloads JSON from the OpenWeatherMap API and displays it. Has many features of a traditional weather app and shows most information that is possible to be pulled from the specific API endpoint that is leveraged.
+
+### [QuartzTest](https://github.com/HunterStanton/QuartzTest)
+An example application for MacOS written in Swift that leverages Quartz and CoreAnimation to quickly change colors of a border around a label and the background color for the main window view.
+
+**EPILEPSY WARNING: If you are epileptic, please do not run this app!**
+
 ### [JAM Unpacker](http://github.com/HunterStanton/JAM-Unpacker)
-An unpacker for the JAM format used by the GameCube/PS2/Wii game, The Grim Adventures of Billy and Mandy.
+An unpacker for the JAM format used by the GameCube/PS2/Wii game, The Grim Adventures of Billy and Mandy that is written in C#.
 
 Allows you to take a peek inside the archives used by the game.
 
 ### [GVAS Converter](https://github.com/HunterStanton/GVAS-Converter)
-A converter for GVAS files used by Unreal Engine 4. It will convert to and from a JSON file, allowing easy editing of configuration files for UE4 games such as Gears of War 4.
+A converter for GVAS files used by Unreal Engine 4 written in C#. It will convert to and from a JSON file, allowing easy editing of configuration files for UE4 games such as Gears of War 4.
 
 ### [SOE SRAM Editor](http://github.com/HunterStanton/SOE-SRAM-Editor)
 An SRAM (save RAM) editor for the Super Nintendo Entertainment System game, Secret of Evermore. Somewhat of a remake of the existing SRAM editor for the game, but in C# and not based off the original C++ code.
@@ -68,20 +76,20 @@ An SRAM (save RAM) editor for the Super Nintendo Entertainment System game, Secr
 This was one of my favorite games growing up, so I wanted to make something for it. It allows you to edit tons of variables related to your game progress.
 
 ### [COD Save Manipulator](http://github.com/HunterStanton/COD-Save-Manipulator)
-A tool that is capable of manipulating savegame.svg files for the popular *Call of Duty* series. It automatically determines which game the savegame is from, which platform it is on, and which endian it is in. It can also determine if the save is an Xbox 360 STFS package or not.
+A tool that is capable of manipulating savegame.svg files for the popular *Call of Duty* series. It automatically determines which game the savegame is from, which platform it is on, and which endian it is in. It can also determine if the save is an Xbox 360 STFS package or not. It is written in C#.
 
 It's main functions are recalculating the checksum stored in savegames, and printing information about them. I hope to expand the functionality to include enumerating saved entities, modifying health/ammunition, and more.
 
 ### [ContainerReader](http://github.com/HunterStanton/ContainerReader)
-A tool that is capable of editing information about UWP (Universal Windows Program) Containers.index files. Mostly used in games, this file format is used to store information about the savegames. Mainly just filename, GUID, and package family name/PFN.
+A tool that is capable of editing information about UWP (Universal Windows Program) Containers.index files. Mostly used in games, this file format is used to store information about the savegames. Mainly just filename, GUID, and package family name/PFN. It is written in C#.
 
 Without using this tool, finding the real names of savegames requires a hex editor. This solves that problem.
 
 ### [Currency Converter](https://github.com/HunterStanton/Currency-Converter)
-This is an Apple TV app that converts currencies using live data from the Fixer.io API. I developed this for the fun of it, and because I knew it would be simple to get going. The API that powers it is very simple (one call for each conversion), so it didn't take long to make at all.
+This is an Apple TV app written in Swift that converts currencies using live data from the Fixer.io API. I developed this for the fun of it, and because I knew it would be simple to get going. The API that powers it is very simple (one call for each conversion), so it didn't take long to make at all.
 
 ### [Song Title Generator](https://github.com/HunterStanton/Song-Title-Generator) / [Song Title Generator TV](https://github.com/HunterStanton/Song-Title-Generator-TV) / [Song Title Generator Mac](https://github.com/HunterStanton/Song-Title-Generator-Mac)
-This is a set of Apple Watch/Apple TV/Macintosh apps for making song titles. It is very simple, and was developed in a single afternoon. Uses two dictionaries with an adjective-noun format, and just pulls one element from each dictionary and combines them to make a song title.
+This is a set of Apple Watch/Apple TV/Macintosh apps for making song titles written in Swift. It is very simple, and was developed in a single afternoon. Uses two dictionaries with an adjective-noun format, and just pulls one element from each dictionary and combines them to make a song title.
 
 ### [IW-Checksum-Fixer](https://github.com/HunterStanton/IW-Checksum-Fixer) / [Ghosts-Checksum-Fixer](https://github.com/HunterStanton/Ghosts-Checksum-Fixer) / [MWX-Checksum-Fixer](https://github.com/HunterStanton/MWX-Checksum-Fixer)
 This is a set of C# applications that recalculate the checksum in Call of Duty: Ghosts, Call of Duty: Infinite Warfare, Call of Duty: Modern Warfare 2, and Call of Duty: Modern Warfare 3 savegame.svg files.
@@ -94,6 +102,6 @@ This was a simple iOS app that was to help me understand the LIFO stack in the c
 Not much use to be found here, but it was useful to me. I put it up incase someone else found it useful.
 
 ### [Splash Screen Test](https://github.com/HunterStanton/SplashScreenTest)
-I challenged myself to make a splash screen in an iOS app with nothing but a timer, two views, and a segue.
+I challenged myself to make a splash screen in an iOS app with nothing but a timer, two views, and a segue. Written in Swift.
 
 This was the end-result of that challenge.

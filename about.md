@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-I am a software developer who has been a fan of programming since I first downloaded Visual Studio 2008 when I was 14. I make it a habit every day to learn more about programming, so I try to read a new article about it or read more documentation every day. Other than my programming, I love to play the bass guitar and write music, make maps for video games such as Call of Duty: Black Ops 3, and I love to ski whenever I get the chance. I'm also a big fan of security, ethical hacking, and reverse engineering and have uncovered bugs in properties by companies such as Google and Microsoft.
+I am a mobile (iOS/Android and Xamarin) and C# developer from Rogersville, TN. I enjoy writing scalable, performant code that powers mobile apps and web applications. I'm very interested in learning all I can about computer science and software engineering, and I actively work every day to keep up with what is new in the field. I am a motivated self-starter who is entirely self taught, and I also have a penchant for entrepreneurship, which is why I co-founded my own business to sell my desktop software and mobile apps to the public.
 
 I also really love Apple products and have since the second-generation iPod Touch came out in 2008 and I received one for Christmas that year. I got into iOS programming around the release of iOS 8 and have loved it ever since then. I love making apps for all platforms, including Apple Watch and Apple TV.
 
@@ -13,25 +13,33 @@ I also really love Apple products and have since the second-generation iPod Touc
 ### Current
 *Co-Founder / Lead iOS Developer (Swift, Objective-C)* - [Nexus Heights](http://nexusheights.org) - December 2015 to Present
 
+Co-founded the company and am the sole developer for all of our mobile and desktop apps, of which there are currently 6 live on the App Store and more in development for platforms such as tvOS, iOS, watchOS, and macOS.
+
+Also handle interaction with our clients, and help make sure that they are satisfied throughout the process and that come back for repeat business.
+
 *Lead iOS Developer (Swift, Xamarin)* - [Drover Rideshare](http://droverrideshare.com) - May 2016 to Present
+
+Worked with a team of developers to develop a mobile ridesharing application akin to Uber or Lyft. Handled disputes when they came up and guided the team on what direction they should be taking for implementing certain functionalities.
+
+Also contributed significantly to the codebase for the Java-powered REST API and helped influence design decisions with how it should work and what it needed to fulfill the needs of the Android and iOS mobile applications.
 
 ## Skills
 
-### iOS
-* Knowledge of Firebase and integrating it into an iOS application securely and efficiently
-* Downloading/sending information or JSON data to and from an HTML endpoint and using the information in an iOS application using SwiftyJSON and URLSession (see __*[Currency-Converter](https://github.com/HunterStanton/Currency-Converter)*__)
-* Integrating BrainTree into an application to securely process payments for e-commerce use 
-* Writing scaling layouts in pure Swift code, without touching Interface Builder
-* Using CocoaPods to seamlessly integrate third-party libraries into an iOS application (see __*[Currency-Converter](https://github.com/HunterStanton/Currency-Converter)*__)
+* Swift
+* Xamarin 
+* Objective-C 
+* C#
+* HTML/CSS 
+* Git 
+* JavaScript 
+* JIRA 
+* Java 
+* Jenkins 
+* CocoaPods 
+* ASP.NET
+* BitBucket
 
-### Reverse Engineering
-* Using a hex-editor or tool such as IDA or Hopper to reverse a file format and then writing a program to modify or print details about the file format (see __*[ContainerReader](https://github.com/HunterStanton/ContainerReader)*__ or __*[COD-Save-Manipulator](https://github.com/HunterStanton/COD-Save-Manipulator)*__ or __*[SOE SRAM Editor](https://github.com/HunterStanton/SOE-SRAM-Editor)*__ or __*[JAM-Unpacker](https://github.com/HunterStanton/JAM-Unpacker)*__)
-* Using a tool such as Hopper or IDA on an application binary to determine information about a checksum used on a file, and then writing a program to recalculate that checksum (see __*[Ghosts-Checksum-Fixer](https://github.com/HunterStanton/Ghosts-Checksum-Fixer)*__)
-* How to use a debugger and breakpoints to step through an application on the assembly level and determine what is going on to find out how it works
-
-### Security
-* Knowledge of most common web application issues and how to fix them, such as CSRF, XSS, XXE, and SQLi
-* How to "think outside the box" to find issues and attack things in a novel way
+However, instead of a bullet pointed list, I'd advise you to check out my [projects](http://hunterstanton.com/projects/) page for some open-source code that proves these skills.
     
 ## Contact me
 
