@@ -40,6 +40,13 @@ Also contributed significantly to the codebase for the Java-powered REST API and
 * BitBucket
 
 However, instead of a bullet pointed list, I'd advise you to check out my [projects](http://hunterstanton.com/projects/) page for some open-source code that proves these skills.
+
+## Blogs
+
+I currently maintain two blogs:
+
+- The one on this very site which is my personal blog
+- [Wearable Haven](http://wearablehaven.com/), a wearable tech blog focused on covering news and reviews about wearable technology such as the Apple Watch or FitBit.
     
 ## Contact me
 
