@@ -52,7 +52,7 @@ A network pinging app for iOS. I developed this and released the source under th
 # Personal
 Things I made in my spare time, separate from Nexus Heights.
 
-## Open-source
+## Open-source (click on title to view code on GitHub)
 
 ### [WiiLightController](https://github.com/HunterStanton/WiiLightController)
 A simple C homebrew app for the Nintendo Wii that allows you to control the DVD light.
