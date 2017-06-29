@@ -54,6 +54,11 @@ Things I made in my spare time, separate from Nexus Heights.
 
 ## Open-source
 
+### [WiiLightController](https://github.com/HunterStanton/WiiLightController)
+A simple C homebrew app for the Nintendo Wii that allows you to control the DVD light.
+
+One of my first forays into development for a non-traditional platform. I chose the Nintendo Wii because information about it is everywhere and there are tons of resources for anyone wanting to get started with it.
+
 ### [WeatherApp](https://github.com/HunterStanton/WeatherApp)
 An example weather app for iOS written in Swift that downloads JSON from the OpenWeatherMap API and displays it. Has many features of a traditional weather app and shows most information that is possible to be pulled from the specific API endpoint that is leveraged.
 
