@@ -12,17 +12,21 @@ It is a fully-fledged rideshare application, using all the technologies associat
 
 Here are a few screenshots:
 
-<img src="{{ site.baseurl }}/images/drover1.png" alt="Drover Rideshare Launch Screen" style="border-radius: 50px;"/>
+<img src="{{ site.baseurl }}/images/drover1.png" alt="Drover Rideshare Launch Screen" style="max-height: 500px; max-width: 500px;"/>
+
 The Drover Rideshare Launch Screen
 
-<img src="{{ site.baseurl }}/images/drover2.png" alt="Drover Main Screen" style="border-radius: 50px;"/>
+<img src="{{ site.baseurl }}/images/drover2.png" alt="Drover Main Screen" style="max-height: 500px; max-width: 500px;"/>
+
 The main screen of the Drover Rideshare application, where rides get scheduled and interacted with.
 
-<img src="{{ site.baseurl }}/images/drover3.png" alt="Drover Side Menu" style="border-radius: 50px;"/>
+<img src="{{ site.baseurl }}/images/drover3.png" alt="Drover Side Menu" style="max-height: 500px; max-width: 500px;"/>
+
 The side menu of the Drover Rideshare application, where the user can navigate to other menus such as Payment Setup or Profile management.
 
 
-<img src="{{ site.baseurl }}/images/drover4.png" alt="Ride Location Selection" style="border-radius: 50px;"/>
+<img src="{{ site.baseurl }}/images/drover4.png" alt="Ride Location Selection" style="max-height: 500px; max-width: 500px;"/>
+
 The area of the Drover Rideshare application where you can choose a preset drop-off/pickup location (such as at a restaurant) or choose to just be picked up/dropped off at your latitude and longitude coordinates.
 
 More screenshots and a video demo can be found [here](https://www.droverrideshare.com/blog/drover-launch-2017)!
