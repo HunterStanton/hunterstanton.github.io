@@ -4,6 +4,29 @@ title: Projects
 permalink: /projects/
 ---
 
+# [Drover Rideshare](http://droverrideshare.com)
+
+This is a project I work on daily, while employed as the Lead iOS developer at Drover Rideshare.
+
+It is a fully-fledged rideshare application, using all the technologies associated with an application of this complexity such as location management, push notifications, use of payment processors, communication with a REST API backend, usage of a database to store user information and ride history, and more.
+
+Here are a few screenshots:
+
+<img src="{{ site.baseurl }}/images/drover1.png" alt="Drover Rideshare Launch Screen" style="border-radius: 50px;"/>
+The Drover Rideshare Launch Screen
+
+<img src="{{ site.baseurl }}/images/drover2.png" alt="Drover Main Screen" style="border-radius: 50px;"/>
+The main screen of the Drover Rideshare application, where rides get scheduled and interacted with.
+
+<img src="{{ site.baseurl }}/images/drover3.png" alt="Drover Side Menu" style="border-radius: 50px;"/>
+The side menu of the Drover Rideshare application, where the user can navigate to other menus such as Payment Setup or Profile management.
+
+
+<img src="{{ site.baseurl }}/images/drover4.png" alt="Ride Location Selection" style="border-radius: 50px;"/>
+The area of the Drover Rideshare application where you can choose a preset drop-off/pickup location (such as at a restaurant) or choose to just be picked up/dropped off at your latitude and longitude coordinates.
+
+More screenshots and a video demo can be found [here](https://www.droverrideshare.com/blog/drover-launch-2017)!
+
 # [Nexus Heights](http://nexusheights.org) 
 The apps I have made and released under my own company, Nexus Heights.
 
