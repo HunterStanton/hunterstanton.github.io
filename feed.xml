@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-02-08T04:05:23-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hunter Stanton</title><subtitle>Independent security researcher and iOS developer.</subtitle><entry><title type="html">CVE-2019-6591 - Reflected XSS in Big-IP APM</title><link href="http://localhost:4000/writeups/2019/02/07/CVE-2019-6591-XSS-in-BIG-IP-Webtops-through-XML-injection.html" rel="alternate" type="text/html" title="CVE-2019-6591 - Reflected XSS in Big-IP APM" /><published>2019-02-07T08:00:00-06:00</published><updated>2019-02-07T08:00:00-06:00</updated><id>http://localhost:4000/writeups/2019/02/07/CVE-2019-6591-XSS-in-BIG-IP-Webtops-through-XML-injection</id><content type="html" xml:base="http://localhost:4000/writeups/2019/02/07/CVE-2019-6591-XSS-in-BIG-IP-Webtops-through-XML-injection.html">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;Recently, I was doing recon during a private bug bounty program, and I came across an interesting endpoint. This endpoint appeared to be for corporate employees to be able to download a pre-configured VPN client so they could gain access to the corporate VPN. Here is what it looked like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/20719/main.png&quot; alt=&quot;Big-IP APM Webtops&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As you can see, not much is provided outside of a few basic options, but I figured those basic options might still be hiding some vulnerabilities.&lt;/p&gt;
+
+&lt;h2 id=&quot;investigating-the-attack-surface&quot;&gt;Investigating the attack surface&lt;/h2&gt;
+
+&lt;p&gt;Like any bug seasoned bug hunter, I took note of a few things immediately:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;The “Find Resource” option&lt;/li&gt;
+  &lt;li&gt;The “Logout” button (sign-in was not provided at any point, it appeared to auto-generate a session)&lt;/li&gt;
+  &lt;li&gt;The “Welcome to F5 Networks” text&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;First, I decided to track down exactly what software was running here based on the URL of the page and the clues I was given. After a few quick Google searches, I determined it to be Big-IP APM with Webtops enabled. Next, I checked to see if there were any known vulnerabilities. Unfortunately, it didn’t seem like there were any that would work on the version this particular endpoint was running, so I knew that I needed to find a new vulnerability and would be able to get a CVE in Big-IP itself if I succeeded.&lt;/p&gt;
+
+&lt;p&gt;Next, I tried the basic stuff, such as XSS through the Find Resource functionality, by pasting in HTML tags into the search box. It all led to dead ends, so I knew I’d have to dig even deeper and it wouldn’t be simple to find a vulnerability. I fired up my proxy and refreshed the page to get a deeper look at the endpoints that were available. There weren’t a lot, considering the limited functionality of this endpoint.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/20719/endpoints.png&quot; alt=&quot;Endpoints in Charles Proxy&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There’s not a ton of endpoints that are available, as you can see, and the ones that are available are very limited.&lt;/p&gt;
+
+&lt;h2 id=&quot;something-stands-out&quot;&gt;Something Stands Out&lt;/h2&gt;
+
+&lt;p&gt;Immediately my eye was attracted to one in particular, &lt;strong&gt;“/vdesk/resource_list_v2.xml?prtn=/Common/&amp;amp;wl_list=Client_Windows+Client_Mac”&lt;/strong&gt; - it seemed to be the endpoint that was queried when the web page needed to get information about the applications that were available.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/20719/rlv2.png&quot; alt=&quot;resource_list_v2.xml&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I messed around with it a bit and discovered that arbitrary XML tags could be injected into the document through the “prtn” parameter, which would appear unmodified in the response. Since it’s XML we’re talking about here, I tried out injecting a DOCTYPE in the hopes that the server would potentially parse it, but that came up empty and it doesn’t seem to actually do anything with the response after it is generated other than send it to the user. On the other side of that same coin, I knew that if I could inject an XHTML script tag, XSS could be triggered because the browser would simply intepret it as an XHTML document.&lt;/p&gt;
+
+&lt;p&gt;My first attempt was met with failure - I could get a normal script tag in there, but it would not be parsed as XHTML. I needed to get the XHTML XMLNS attribute injected as well, so I crossed my fingers and tried it. Needless to say, it didn’t quite work, as the endpoint was automatically stripping out : from the prtn parameter, stopping you from forming the proper XMLNS attribute needed. At this point, I was defeated, and walked away for a few days. So close, yet so far away.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-few-days-later&quot;&gt;A few days later…&lt;/h2&gt;
+&lt;p&gt;I thought about some ways to get past this problem. I remembered that you can encode any character as an HTML character entity, so I tried injecting the XMLNS attribute in my script tag encoded as HTML character entities. That didn’t work either, as the server was decoding them itself before generating the response, so it was treating it as if I didn’t encode it at all.&lt;/p&gt;
+
+&lt;p&gt;Then, I had another idea: what if I encoded the HTML character entities into HTML character entities? (so &lt;strong&gt;&amp;amp;#x61;&lt;/strong&gt; becomes &lt;strong&gt;&amp;amp;#x26;&amp;amp;#x23;&amp;amp;#x78;&amp;amp;#x36;&amp;amp;#x31;&amp;amp;#x3B;&lt;/strong&gt;) I figured the server wouldn’t decode them twice, so I gave it a shot. Then this happened…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/20719/xss.png&quot; alt=&quot;Successful cross-site scripting vulnerability&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Turns out, when you double encode, the server &lt;em&gt;does&lt;/em&gt; only decode once, and then the browser does the last step of the decoding and allows you to form the valid XHTML script tag, enabling reflected XSS to be performed in all browsers.&lt;/p&gt;
+
+&lt;p&gt;Furthermore, XSS cannot be triggered if the users session has expired. If try to perform the attack, and the victim lacks a valid session, the endpoint will 302 re-direct to establish a session. Fortunately for us, the endpoint that actually creates the session does &lt;em&gt;not&lt;/em&gt; use iframe protection. An attacker can simply create a website that will establish a session using an iframe, and then redirect the victim to the XSS payload. This trick allows XSS regardless of if you have a valid session or not.&lt;/p&gt;
+
+&lt;p&gt;Happy with my victory, I quickly reported the issue to F5 Networks and the private bug bounty program.&lt;/p&gt;
+
+&lt;h1 id=&quot;timeline&quot;&gt;Timeline:&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;12/7/2018&lt;/strong&gt; - Vulnerability Discovered, reported to F5 Networks&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;12/17/2018&lt;/strong&gt; - F5 Networks responds and says they have confirmed the vulnerability and are working on a patch&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1/29/2019&lt;/strong&gt; - The vulnerability is resolved in Big-IP (APM) 14.1.0, 13.1.1.4, and 12.1.1 and assigned &lt;strong&gt;CVE-2019-6591&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;in-closing&quot;&gt;In closing&lt;/h2&gt;
+
+&lt;p&gt;I’d just like to say that if something seems impossible at first, don’t stop hammering away at it. I almost walked away from this bug completely - I just happened to come back a while later and keep at it, because I had a hunch that there was a way to pull it off, and it turned out I was right in the end. I cannot tell you how many bugs I’ve found after dropping my investigation and then coming back a while later, refreshed and with some new ideas to try out. Never give up, and you’ll succeed eventually a lot of the time.&lt;/p&gt;
+
+&lt;p&gt;I’d just like to thank F5 Networks for being professional and fixing this issue promptly, and to thank you as well for reading this point. See you next time!&lt;/p&gt;</content><author><name></name></author><summary type="html">Introduction</summary></entry><entry><title type="html">Hello, world!</title><link href="http://localhost:4000/jekyll/update/2019/02/06/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Hello, world!" /><published>2019-02-06T10:13:42-06:00</published><updated>2019-02-06T10:13:42-06:00</updated><id>http://localhost:4000/jekyll/update/2019/02/06/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/02/06/welcome-to-jekyll.html">&lt;p&gt;Welcome to the new blog for 2019. I have abandoned the previous theme, as I found it to be quite unappealing. Anyway, this is where I’ll drop cool security and iOS dev related stuff. Thanks for reading.&lt;/p&gt;</content><author><name></name></author><summary type="html">Welcome to the new blog for 2019. I have abandoned the previous theme, as I found it to be quite unappealing. Anyway, this is where I’ll drop cool security and iOS dev related stuff. Thanks for reading.</summary></entry></feed>
