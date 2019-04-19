@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/post/2019/02/06/hello-world.html</loc>
+<loc>https://hunterstanton.com/post/2019/02/06/hello-world.html</loc>
 <lastmod>2019-02-06T10:13:42-06:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/writeups/2019/02/07/CVE-2019-6591-XSS-in-BIG-IP-Webtops-through-XML-injection.html</loc>
+<loc>https://hunterstanton.com/writeups/2019/02/07/CVE-2019-6591-XSS-in-BIG-IP-Webtops-through-XML-injection.html</loc>
 <lastmod>2019-02-07T08:00:00-06:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/about/</loc>
+<loc>https://hunterstanton.com/post/2019/04/18/Fuzzing-on-Windows-with-BFF.html</loc>
+<lastmod>2019-04-18T11:00:00-05:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/</loc>
+<loc>https://hunterstanton.com/about/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/projects/</loc>
+<loc>https://hunterstanton.com/</loc>
+</url>
+<url>
+<loc>https://hunterstanton.com/projects/</loc>
 </url>
 </urlset>

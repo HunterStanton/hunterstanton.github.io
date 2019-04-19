@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Fuzzing on Windows with CERT’s Basic Fuzzing Framework | Hunter Stanton</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Fuzzing on Windows with CERT’s Basic Fuzzing Framework" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="As anyone that is knowledgable in the field of security is probably aware, fuzz testing is an essential part of the toolkit. After all, it would be virtually impossible to test as many inputs as something like AFL can - with a proper fuzzing setup and a fast executable (or a slower executable with some patches to skip things such as disk writes and checksums, in some cases), you can hit thousands of executions per second. Well, recently, I’ve been getting a bit more serious about fuzzing, and since I primarily have a desire to fuzz Windows applications, I decided I’d talk about my experience using CERT’s Basic Fuzzing Framework and share a few tips." />
+<meta property="og:description" content="As anyone that is knowledgable in the field of security is probably aware, fuzz testing is an essential part of the toolkit. After all, it would be virtually impossible to test as many inputs as something like AFL can - with a proper fuzzing setup and a fast executable (or a slower executable with some patches to skip things such as disk writes and checksums, in some cases), you can hit thousands of executions per second. Well, recently, I’ve been getting a bit more serious about fuzzing, and since I primarily have a desire to fuzz Windows applications, I decided I’d talk about my experience using CERT’s Basic Fuzzing Framework and share a few tips." />
+<link rel="canonical" href="https://hunterstanton.com/post/2019/04/18/Fuzzing-on-Windows-with-BFF.html" />
+<meta property="og:url" content="https://hunterstanton.com/post/2019/04/18/Fuzzing-on-Windows-with-BFF.html" />
+<meta property="og:site_name" content="Hunter Stanton" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-04-18T11:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"As anyone that is knowledgable in the field of security is probably aware, fuzz testing is an essential part of the toolkit. After all, it would be virtually impossible to test as many inputs as something like AFL can - with a proper fuzzing setup and a fast executable (or a slower executable with some patches to skip things such as disk writes and checksums, in some cases), you can hit thousands of executions per second. Well, recently, I’ve been getting a bit more serious about fuzzing, and since I primarily have a desire to fuzz Windows applications, I decided I’d talk about my experience using CERT’s Basic Fuzzing Framework and share a few tips.","@type":"BlogPosting","url":"https://hunterstanton.com/post/2019/04/18/Fuzzing-on-Windows-with-BFF.html","headline":"Fuzzing on Windows with CERT’s Basic Fuzzing Framework","dateModified":"2019-04-18T11:00:00-05:00","datePublished":"2019-04-18T11:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://hunterstanton.com/post/2019/04/18/Fuzzing-on-Windows-with-BFF.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://hunterstanton.com/feed.xml" title="Hunter Stanton" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Hunter Stanton</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a><a class="page-link" href="/projects/">Projects</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Fuzzing on Windows with CERT&#39;s Basic Fuzzing Framework</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-04-18T11:00:00-05:00" itemprop="datePublished">Apr 18, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>As anyone that is knowledgable in the field of security is probably aware, fuzz testing is an essential part of the toolkit. After all, it would be virtually impossible to test as many inputs as something like AFL can - with a proper fuzzing setup and a fast executable (or a slower executable with some patches to skip things such as disk writes and checksums, in some cases), you can hit thousands of executions per second. Well, recently, I’ve been getting a bit more serious about fuzzing, and since I primarily have a desire to fuzz Windows applications, I decided I’d talk about my experience using <a href="https://vuls.cert.org/confluence/display/tools/CERT+BFF+-+Basic+Fuzzing+Framework">CERT’s Basic Fuzzing Framework</a> and share a few tips.</p>
+
+<p>First off, I’d like to say that I am aware that AFL has a port to Windows called <a href="https://github.com/googleprojectzero/winafl">WinAFL</a>. I’ve used it in the past, and it is just as every bit as excellent of a fuzzer on Windows as it is anywhere else. However, it can be tricky to setup, especially if you’re fuzzing complex black box targets like I mainly do (I really love fuzzing games as a hobby).</p>
+
+<p>I’ve recently been relying a lot more on CERT’s BFF. Sure, it’s not as fast as AFL. It’s also not as smart (AFL’s heuristics are seriously impressive) however I do think that it is the quickest way to get into fuzzing a black box target. You can set up a new campaign in about 5 minutes and you’re off to the races, and that was the idea CERT had in mind when they were creating it. They intended for it to be a quick, intelligent enough fuzzer that anyone can get into fuzzing with, and it serves that purpose well.</p>
+
+<p>One of the problems I’ve ran into with fuzzing game engines is that, a lot of the time, you can’t directly launch into a specific map or game session right from the command prompt. However, I have come up with a solution, and that solution is basically to set the fuzz target to a batch file that sets up the game files properly so that fuzzing can still occur. Generally this involves copying the current fuzzing iteration to the game directory, and launching the game. The one limitation to this is that you’re limited to a corpus of only the files that the game will need to load immediately. Some games have a built in feature to load up a specific map or run commands on startup (Source Engine games are great for this) but most games don’t. For example, one of my prior fuzz targets was Halo Combat Evolved: there are no command line parameters to load up Halo CE into a specific map, so I simply fuzzed the <em>ui.map</em> file. It is loaded instantly upon starting the executable, so I was still able to fuzz the .map format.</p>
+
+<p>Here is the batch file that I’ve got going for Halo Combat Evolved:</p>
+
+<p><code class="highlighter-rouge">copy "%1" "C:\Program Files (x86)\Microsoft Games\Halo\maps\ui.map</code></p>
+
+<p><code class="highlighter-rouge">cd "C:\Program Files (x86)\Microsoft Games\Halo"</code></p>
+
+<p><code class="highlighter-rouge">start /wait halo -window -safemode -vidmode 320,240,60</code></p>
+
+<p>To break it down a bit, first we copy the seed into the proper location with the proper name so it will overwrite the original UI.map with the current fuzz iteration. Next, we’ll switch directories over to the Halo Custom Edition directory. Then, we’ll start Halo with the <em>/wait</em> flag (which allows BFF to catch crashes that occur, otherwise the batch file will just close after launch and BFF will think the fuzzing iteration is finished) and we also set the video mode to a low resolution and run it in a window. That’s not strictly necessary, I just do that to speedup the game’s launch for faster fuzzing. The batch file runs every fuzzing iteration, so a new, freshly mutated ui.map gets copied into the right place every single time.</p>
+
+<p>This can also be applied as a generic processing step for the seed. I’ve used a similar batch file in the past to put the seed into a zip file first before copying it over as the application in question would only take ZIPs and I didn’t want to fuzz the ZIP container parsing code. You could probably do something like fix checksums if you want (however, I’d strongly recommend just patching out checksum code if you can).</p>
+
+<p>Anyway, that’s been my experience with BFF. While there are definitely better fuzzing options out there, BFF can be setup to run very quickly with any executable in existence, and I think it’s definitely a valuable tool to have around. I’ve found several good bugs with it and I hope to keep finding more in the future.</p>
+
+  </div><a class="u-url" href="/post/2019/04/18/Fuzzing-on-Windows-with-BFF.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Hunter Stanton</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Hunter Stanton</li><li><a class="u-email" href="mailto:hunter_stanton@outlook.com">hunter_stanton@outlook.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/hunterstanton"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">hunterstanton</span></a></li><li><a href="https://www.twitter.com/hun10sta"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">hun10sta</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Independent security researcher and iOS developer.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
